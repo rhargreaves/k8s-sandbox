@@ -1,2 +1,2 @@
-# k8s-sandbox
+# Kubernetes Sandbox
 Kubernetes &amp; Ko.
