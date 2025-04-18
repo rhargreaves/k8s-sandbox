@@ -9,6 +9,8 @@ spec:
       app: backend-api
   template:
     metadata:
+      annotations:
+        linkerd.io/inject: enabled
       labels:
         app: backend-api
     spec:

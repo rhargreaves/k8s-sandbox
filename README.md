@@ -7,7 +7,8 @@ Kubernetes &amp; Ko.
 ## Requirements
 
 * Docker
-* Minikube
+* Minikube (`brew install minikube`)
+* Linkerd (`brew install linkerd`)
 
 ## Build Services
 
@@ -19,4 +20,10 @@ make build
 
 ```
 make deploy
+```
+
+## Install Linkerd to Cluster
+
+```
+make linkerd-install
 ```

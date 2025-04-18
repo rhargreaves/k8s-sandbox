@@ -25,3 +25,9 @@ clean:
 	minikube image rm frontend-api:latest
 	minikube image rm backend-api:latest
 .PHONY: clean
+
+linkerd-install:
+	linkerd install --crds | kubectl apply -f -
+	linkerd install --set proxyInit.runAsRoot=true | kubectl apply -f -
+	linkerd viz install | kubectl apply -f -
+.PHONY: linkerd-install
