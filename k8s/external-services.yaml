@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: www-roberthargreaves-com
+  annotations:
+    mirror.linkerd.io/external-svc: "true"
+spec:
+  type: ExternalName
+  externalName: www.roberthargreaves.com
+  ports:
+  - name: https
+    port: 443
+    protocol: TCP
+    targetPort: 443
+---
+apiVersion: linkerd.io/v1alpha2
+kind: ServiceProfile
+metadata:
+  name: www-roberthargreaves-com.default.svc.cluster.local
+  namespace: default
+spec:
+  routes:
+    - name: GET /
+      condition:
+        method: GET
+        pathRegex: /
+    - name: ALL /*
+      condition:
+        pathRegex: /.*

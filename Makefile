@@ -1,8 +1,11 @@
+TIMESTAMP := $(shell date +%s)
+export VERSION := $(TIMESTAMP)
+
 build:
-	docker build -t frontend-api:latest -f frontend-api.Dockerfile .
-	docker build -t backend-api:latest -f backend-api.Dockerfile .
-	minikube image load frontend-api:latest
-	minikube image load backend-api:latest
+	docker build -t frontend-api:${VERSION} -t frontend-api:latest -f frontend-api.Dockerfile .
+	docker build -t backend-api:${VERSION} -t backend-api:latest -f backend-api.Dockerfile .
+	minikube image load frontend-api:${VERSION}
+	minikube image load backend-api:${VERSION}
 .PHONY: build
 
 run:
@@ -10,8 +13,9 @@ run:
 .PHONY: run
 
 deploy:
-	kubectl apply -f k8s/frontend-api.yaml
-	kubectl apply -f k8s/backend-api.yaml
+	envsubst < k8s/frontend-api.yaml | kubectl apply -f -
+	envsubst < k8s/backend-api.yaml | kubectl apply -f -
+	kubectl apply -f k8s/external-services.yaml
 .PHONY: deploy
 
 delete:

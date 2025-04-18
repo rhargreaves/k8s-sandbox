@@ -8,7 +8,7 @@ Kubernetes &amp; Ko.
 
 * Docker
 * Minikube (`brew install minikube`)
-* Linkerd (`brew install linkerd`)
+* Linkerd ([manual install](https://linkerd.io/2-edge/overview/index.html))
 
 ## Build Services
 
