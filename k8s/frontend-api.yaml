@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hello-world
+  name: frontend-api
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: hello-world
+      app: frontend-api
   template:
     metadata:
       labels:
-        app: hello-world
+        app: frontend-api
     spec:
       containers:
-      - name: hello-world
-        image: hello-world:latest
+      - name: frontend-api
+        image: frontend-api:latest
         imagePullPolicy: Never
         ports:
         - containerPort: 8080
@@ -22,11 +22,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: hello-world
+  name: frontend-api
 spec:
   type: NodePort
   selector:
-    app: hello-world
+    app: frontend-api
   ports:
   - port: 8080
     targetPort: 8080

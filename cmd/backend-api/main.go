@@ -7,7 +7,7 @@ import (
 
 func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "Hello, Kubernetes World! 2")
+		fmt.Fprintf(w, "Hello, this is the backend API! 🛠️")
 	})
 
 	port := ":8080"

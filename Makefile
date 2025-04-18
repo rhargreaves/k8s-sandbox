@@ -1,21 +1,27 @@
 build:
-	docker build -t hello-world:latest .
-	minikube image load hello-world:latest
+	docker build -t frontend-api:latest -f frontend-api.Dockerfile .
+	docker build -t backend-api:latest -f backend-api.Dockerfile .
+	minikube image load frontend-api:latest
+	minikube image load backend-api:latest
 .PHONY: build
 
 run:
-	docker run -p 8080:8080 hello-world:latest
+	minikube service frontend-api
 .PHONY: run
 
 deploy:
-	kubectl apply -f k8s/hello-world.yaml
+	kubectl apply -f k8s/frontend-api.yaml
+	kubectl apply -f k8s/backend-api.yaml
 .PHONY: deploy
 
 delete:
-	kubectl delete -f k8s/hello-world.yaml
+	kubectl delete -f k8s/frontend-api.yaml
+	kubectl delete -f k8s/backend-api.yaml
 .PHONY: delete
 
 clean:
-	docker rmi hello-world:latest
-	minikube image rm hello-world:latest
+	docker rmi frontend-api:latest
+	docker rmi backend-api:latest
+	minikube image rm frontend-api:latest
+	minikube image rm backend-api:latest
 .PHONY: clean
