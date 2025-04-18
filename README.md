@@ -1,4 +1,7 @@
 # Kubernetes Sandbox
+
+[![Build](https://github.com/rhargreaves/k8s-sandbox/actions/workflows/build.yaml/badge.svg)](https://github.com/rhargreaves/k8s-sandbox/actions/workflows/build.yaml)
+
 Kubernetes &amp; Ko.
 
 ## Requirements
